@@ -1,0 +1,80 @@
+body
+    padding 30px
+
+.chat
+    width 640px
+    padding 20px
+    margin 0 auto
+    text-align center
+    border 1px solid #cccccc
+    box-shadow 1px 1px 8px rgba(0, 0, 0, 0.2)
+    border-radius 3px
+
+.video
+    display -webkit-box
+    display -webkit-flex
+    display flex
+
+.counter-video
+    margin 0 20px
+    width 300px
+    height 300px
+
+.message
+    width 600px
+    margin 0 auto
+
+    .message-list
+        height 100px
+        overflow auto
+        padding 5px 20px 5px 5px
+        background #f8f8f8
+        color #333333
+        border 1px solid #cccccc
+        border-radius 3px
+        text-align left
+
+        li
+            margin 0
+            padding 0
+            list-style none
+            line-height 1.4
+
+            &.me
+                &:before
+                    content "you: "
+
+            &.lyn
+                &:before
+                    content "lyn: "
+
+    .input-form
+
+        textarea
+            resize none
+            width 360px
+            margin-right 20px
+            border-radius 3px
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary
+    color white
+    border-radius 4px
+    text-shadow 0 1px 1px rgba(0, 0, 0, 0.2)
+
+.button-success
+    background rgb(28, 184, 65) /* this is a green */
+
+.button-error
+    background rgb(202, 60, 60) /* this is a maroon */
+
+.button-warning
+    background rgb(223, 117, 20) /* this is an orange */
+
+.button-secondary
+    background rgb(66, 184, 221) /* this is a light blue */
+
+.graph-wrap
+    margin-top 20px

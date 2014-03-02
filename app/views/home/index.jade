@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+    aside.chat
+        section.video
+            div
+                video.counter-video(id="local-video", autoplay)
+            div
+                video.counter-video(id="remote-video", autoplay)
+
+        section.message
+            ul.message-list
+            form.input-form
+                textarea(id="message-input")
+                a.button-success.pure-button(href="#", id="message-send")="送信"
+            div.graph-wrap
+                h3="相手国のデータ"
+                img(src="/img/966543_636539326411131_33194145_o.jpg", width="500")
