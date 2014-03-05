@@ -70,11 +70,6 @@
             video: true,
             audio: true
         }, function(mediaStream){
-            var localVideo = document.getElementById('local-video');
-
-            localVideo.src = URL.createObjectURL(mediaStream);
-            localVideo.play();
-
             call = peer.call(key, mediaStream);
             call.on('stream', receiveVideo);
         });
@@ -84,11 +79,6 @@
             video: true,
             audio: true
         }, function(mediaStream){
-            var localVideo = document.getElementById('local-video');
-
-            localVideo.src = URL.createObjectURL(mediaStream);
-            localVideo.play();
-
             call.answer(mediaStream);
             call.on('stream', receiveVideo);
         });
@@ -96,9 +86,12 @@
     var receiveVideo = function(mediaStream) {
         var remoteVideo = document.getElementById('remote-video');
 
+        remoteVideo.classList.add('on');
         remoteVideo.src = URL.createObjectURL(mediaStream);
         remoteVideo.play();
     };
+
+    var callKey;
 
     peer.on('open', function(id) {
 
@@ -115,7 +108,7 @@
                 });
             });
 
-            sendVideo(data.key);
+            callKey = data.key;
         });
 
         socket.emit('c2s', {
@@ -136,6 +129,16 @@
 
         peer.on('call', function(call) {
             answerVideo(call);
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var callElements = Array.prototype.slice.call(document.getElementsByClassName('js-call'));
+
+        callElements.forEach(function(element) {
+            element.addEventListener('click', function() {
+                sendVideo(callKey);
+            })
         });
     });
 

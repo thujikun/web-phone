@@ -1,18 +1,44 @@
 extends ../layout
 
-block content
-    aside.chat
-        section.video
-            div
-                video.counter-video(id="local-video", autoplay)
-            div
-                video.counter-video(id="remote-video", autoplay)
+block header
+    header
+        .header-wrap
+            .user
+                .icon-angle-left
+                .icon-user
+                .name
+                    .text="上野直樹"
+                    .status="online"
 
-        section.message
-            ul.message-list
-            form.input-form
-                textarea(id="message-input")
-                a.button-success.pure-button(href="#", id="message-send")="送信"
-            div.graph-wrap
-                h3="相手国のデータ"
-                img(src="/img/966543_636539326411131_33194145_o.jpg", width="500")
+            .bookmark
+                .icon-star
+            .edit
+                .icon-pencil
+            .settings
+                .icon-ellipsis-vertical
+
+
+
+block content
+    main.chat
+        section.profile
+            img(src="/img/img_rokuro.png")
+            video.counter-video(id="remote-video", autoplay)
+
+        section.operation
+            div.button-wrap
+                a.pure-button.button-viber.js-call="Free Call"
+                a.pure-button.button-viber.js-message="Free Message"
+
+            div.out
+                h3="CALL ANY NUMBER VIA VIBER OUT"
+                div.number-wrap
+                    div.number="08012345678"
+                    div.button-wrap
+                        a.button-out.js-out="VIBER OUT"
+
+        //- section.message
+        //-     ul.message-list
+        //-     form.input-form
+        //-         textarea(id="message-input")
+        //-         a.button-success.pure-button(href="#", id="message-send")="送信"

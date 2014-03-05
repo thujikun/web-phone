@@ -1,27 +1,109 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url("fonts/icomoon.eot?-bsxk5");
+  src: url("fonts/icomoon.eot?#iefix-bsxk5") format('embedded-opentype'), url("fonts/icomoon.woff?-bsxk5") format('woff'), url("fonts/icomoon.ttf?-bsxk5") format('truetype'), url("fonts/icomoon.svg?-bsxk5#icomoon") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+/* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-user:before {
+  content: "\e600";
+}
+.icon-star:before {
+  content: "\e601";
+}
+.icon-ellipsis-vertical:before {
+  content: "\e602";
+}
+.icon-pencil:before {
+  content: "\e603";
+}
+.icon-angle-left:before {
+  content: "\e604";
+}
 body {
-  padding: 30px;
+  font-family: helvetica;
 }
-.chat {
-  width: 640px;
-  padding: 20px;
-  margin: 0 auto;
-  text-align: center;
-  border: 1px solid #ccc;
-  box-shadow: 1px 1px 8px rgba(0,0,0,0.2);
-  border-radius: 3px;
+header {
+  background-color: #8156a3;
+  color: #fff;
+  -webkit-box-shadow: 0 0 9px rgba(0,0,0,0.6);
+  box-shadow: 0 0 9px rgba(0,0,0,0.6);
 }
-.video {
+header .header-wrap {
   display: -webkit-box;
   display: -webkit-flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
   display: flex;
 }
+header .user {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  width: 55%;
+}
+header .user .icon-user {
+  margin-right: 5px;
+}
+header .user .status {
+  color: rgba(255,255,255,0.6);
+}
+header .bookmark,
+header .edit,
+header .settings {
+  width: 15%;
+  text-align: center;
+}
+header .icon-star {
+  color: rgba(0,0,0,0.2);
+}
+header [class^="icon-"] {
+  padding: 5px 0;
+  font-size: 30px;
+}
+.profile {
+  overflow: hidden;
+  height: 200px;
+}
+.profile img {
+  max-width: 100%;
+}
+.chat {
+  margin: 0 auto;
+  text-align: center;
+}
+.chat profile img {
+  width: 100%;
+}
 .counter-video {
-  margin: 0 20px;
-  width: 300px;
-  height: 300px;
+  display: none;
+  width: 100%;
+}
+.counter-video.on {
+  display: block;
 }
 .message {
-  width: 600px;
   margin: 0 auto;
 }
 .message .message-list {
@@ -31,6 +113,7 @@ body {
   background: #f8f8f8;
   color: #333;
   border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
   border-radius: 3px;
   text-align: left;
 }
@@ -48,15 +131,17 @@ body {
 }
 .message .input-form textarea {
   resize: none;
-  width: 360px;
   margin-right: 20px;
+  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .button-success,
 .button-error,
 .button-warning,
-.button-secondary {
+.button-secondary,
+.button-viber {
   color: #fff;
+  -webkit-border-radius: 4px;
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0,0,0,0.2);
 }
@@ -76,6 +161,57 @@ body {
   background: #42b8dd;
 /* this is a light blue */
 }
-.graph-wrap {
-  margin-top: 20px;
+.button-viber {
+  width: 44%;
+  margin: 0 2.5%;
+  padding: 10px 0;
+  background: #8156a3;
+/* this is a viber service color */
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  font-size: 14px;
+}
+.operation {
+  margin-top: 10px;
+}
+.operation .out {
+  margin-top: 25px;
+}
+.operation h3 {
+  margin: 0 4% 8px;
+  font-size: 12px;
+  color: #8156a3;
+  text-align: left;
+  border-bottom: 1px solid #8156a3;
+}
+.operation .number-wrap {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  margin: 0 5%;
+}
+.operation .number-wrap > * {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.operation .number-wrap .number {
+  text-align: left;
+}
+.operation .number-wrap .button-wrap {
+  text-align: right;
+}
+.operation .number-wrap .button-out {
+  padding: 2px 5px;
+  border: 1px solid #8156a3;
+  font-size: 11px;
+  font-weight: bold;
+  color: #8156a3;
 }

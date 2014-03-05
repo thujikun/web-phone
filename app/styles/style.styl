@@ -1,27 +1,67 @@
+@import 'font-icons'
+@import 'nib'
+
 body
-    padding 30px
+    font-family helvetica
+
+header
+    background-color #8156a3
+    color #ffffff
+    box-shadow 0 0 9px rgba(0, 0, 0, 0.6)
+
+    .header-wrap
+        display -webkit-box
+        display -webkit-flex
+        display flex
+
+    .user
+        display -webkit-box
+        display -webkit-flex
+        display flex
+        width 55%
+
+        .icon-user
+            margin-right 5px
+
+        .status
+            color rgba(255, 255, 255, 0.6)
+
+    .bookmark, .edit, .settings
+        width 15%
+        text-align center
+
+    .icon-star
+        color rgba(0, 0, 0, 0.2)
+
+    [class^="icon-"]
+        padding 5px 0
+        font-size 30px
+
+.profile
+    overflow hidden
+    height 200px
+
+    img
+        max-width 100%
 
 .chat
-    width 640px
-    padding 20px
     margin 0 auto
     text-align center
-    border 1px solid #cccccc
-    box-shadow 1px 1px 8px rgba(0, 0, 0, 0.2)
-    border-radius 3px
 
-.video
-    display -webkit-box
-    display -webkit-flex
-    display flex
+    profile
+        img
+            width 100%
+
+        
 
 .counter-video
-    margin 0 20px
-    width 300px
-    height 300px
+    display none
+    width 100%
+
+    &.on
+        display block
 
 .message
-    width 600px
     margin 0 auto
 
     .message-list
@@ -52,14 +92,14 @@ body
 
         textarea
             resize none
-            width 360px
             margin-right 20px
             border-radius 3px
 
 .button-success,
 .button-error,
 .button-warning,
-.button-secondary
+.button-secondary,
+.button-viber
     color white
     border-radius 4px
     text-shadow 0 1px 1px rgba(0, 0, 0, 0.2)
@@ -76,5 +116,43 @@ body
 .button-secondary
     background rgb(66, 184, 221) /* this is a light blue */
 
-.graph-wrap
-    margin-top 20px
+.button-viber
+    width 44%
+    margin 0 2.5%
+    padding 10px 0
+    background #8156a3 /* this is a viber service color */
+    border-radius 0
+    font-size 14px
+
+.operation
+    margin-top 10px
+
+    .out
+        margin-top 25px
+
+    h3
+        margin 0 4% 8px
+        font-size 12px
+        color #8156a3
+        text-align left
+        border-bottom 1px solid #8156a3
+
+    .number-wrap
+        display flex
+        margin 0 5%
+
+        > *
+            flex 1
+
+        .number
+            text-align left
+
+        .button-wrap
+            text-align right
+
+        .button-out
+            padding 2px 5px
+            border 1px solid #8156a3
+            font-size 11px
+            font-weight bold
+            color #8156a3
