@@ -43,18 +43,18 @@
     var socket = io.connect(location.protocol + '//' + location.hostname);
     var conn;
     var setInput = function() {
-        document.getElementById('message-send').addEventListener('click', function(e) {
-            var input = document.getElementById('message-input');
+        // document.getElementById('message-send').addEventListener('click', function(e) {
+        //     var input = document.getElementById('message-input');
 
-            // Send messages
-            conn.send({
-                message: input.value
-            });
-            appendMessage(input.value);
-            input.value = '';
+        //     // Send messages
+        //     conn.send({
+        //         message: input.value
+        //     });
+        //     appendMessage(input.value);
+        //     input.value = '';
 
-            e.preventDefault();
-        });
+        //     e.preventDefault();
+        // });
 
     };
     var appendMessage = function(message) {
@@ -100,12 +100,12 @@
 
             conn.on('open', function() {
 
-                setInput();
+                // setInput();
 
                 // Receive messages
-                conn.on('data', function(data) {
-                    appendMessage(data.message);
-                });
+                // conn.on('data', function(data) {
+                //     appendMessage(data.message);
+                // });
             });
 
             callKey = data.key;
