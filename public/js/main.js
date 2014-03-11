@@ -156,14 +156,12 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var callElements = Array.prototype.slice.call(document.getElementsByClassName('js-call'));
+        var callElements = Array.prototype.slice.call(document.getElementsByClassName('js-call'));
 
-            callElements.forEach(function(element) {
-                element.addEventListener('click', function() {
-                    sendVideo(callKey);
-                })
-            });
+        callElements.forEach(function(element) {
+            element.addEventListener('click', function() {
+                sendVideo(callKey);
+            })
         });
     });
 
