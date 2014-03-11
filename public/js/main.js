@@ -66,20 +66,40 @@
         messageList.appendChild(messageElement);
     };
     var sendVideo = function(key) {
-        navigator.webkitGetUserMedia({
-            audio: true
-        }, function(mediaStream){
-            call = peer.call(key, mediaStream);
-            call.on('stream', receiveVideo);
-        });
+        if(navigator.webkitGetUserMedia) {
+            navigator.webkitGetUserMedia({
+                audio: true
+            }, function(mediaStream){
+                call = peer.call(key, mediaStream);
+                call.on('stream', receiveVideo);
+            }, function(){});
+        }
+        if(navigator.mozGetUserMedia) {
+            navigator.mozGetUserMedia({
+                audio: true
+            }, function(mediaStream){
+                call = peer.call(key, mediaStream);
+                call.on('stream', receiveVideo);
+            }, function(){});
+        }
     };
     var answerVideo = function(call) {
-        navigator.webkitGetUserMedia({
-            audio: true
-        }, function(mediaStream){
-            call.answer(mediaStream);
-            call.on('stream', receiveVideo);
-        });
+        if(navigator.webkitGetUserMedia) {
+            navigator.webkitGetUserMedia({
+                audio: true
+            }, function(mediaStream){
+                call.answer(mediaStream);
+                call.on('stream', receiveVideo);
+            }, function(){});
+        }
+        if(navigator.mozGetUserMedia) {
+            navigator.webkitGetUserMedia({
+                audio: true
+            }, function(mediaStream){
+                call.answer(mediaStream);
+                call.on('stream', receiveVideo);
+            }, function(){});
+        }
     };
     var receiveVideo = function(mediaStream) {
         var remoteVideo = document.getElementById('remote-video');
