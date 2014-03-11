@@ -67,7 +67,6 @@
     };
     var sendVideo = function(key) {
         navigator.webkitGetUserMedia({
-            video: true,
             audio: true
         }, function(mediaStream){
             call = peer.call(key, mediaStream);
@@ -76,7 +75,6 @@
     };
     var answerVideo = function(call) {
         navigator.webkitGetUserMedia({
-            video: true,
             audio: true
         }, function(mediaStream){
             call.answer(mediaStream);
