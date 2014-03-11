@@ -37,130 +37,133 @@
         }
     };
 
-    var analyzer = new UrlAnalyzer(location.href);
+    document.addEventListener('DOMContentLoaded', function() {
 
-    var peer = new Peer({key: 'lwjd5qra8257b9'});
-    var socket = io.connect(location.protocol + '//' + location.hostname);
-    var conn;
-    var setInput = function() {
-        // document.getElementById('message-send').addEventListener('click', function(e) {
-        //     var input = document.getElementById('message-input');
+        var analyzer = new UrlAnalyzer(location.href);
 
-        //     // Send messages
-        //     conn.send({
-        //         message: input.value
-        //     });
-        //     appendMessage(input.value);
-        //     input.value = '';
+        var peer = new Peer({key: 'lwjd5qra8257b9'});
+        var socket = io.connect(location.protocol + '//' + location.hostname);
+        var conn;
+        var setInput = function() {
+            // document.getElementById('message-send').addEventListener('click', function(e) {
+            //     var input = document.getElementById('message-input');
 
-        //     e.preventDefault();
-        // });
+            //     // Send messages
+            //     conn.send({
+            //         message: input.value
+            //     });
+            //     appendMessage(input.value);
+            //     input.value = '';
 
-    };
-    var appendMessage = function(message) {
-        var messageList = document.getElementsByClassName('message-list')[0],
-            messageElement = document.createElement('li'),
-            messageText = document.createTextNode(message);
+            //     e.preventDefault();
+            // });
 
-        messageElement.appendChild(messageText);
-        messageList.appendChild(messageElement);
-    };
-    var sendVideo = function(key) {
-        if(navigator.webkitGetUserMedia) {
-            navigator.webkitGetUserMedia({
-                audio: true
-            }, function(mediaStream){
-                call = peer.call(key, mediaStream);
-                call.on('stream', receiveVideo);
-            }, function(){});
-        }
-        if(navigator.mozGetUserMedia) {
-            navigator.mozGetUserMedia({
-                audio: true
-            }, function(mediaStream){
-                call = peer.call(key, mediaStream);
-                call.on('stream', receiveVideo);
-            }, function(){});
-        }
-    };
-    var answerVideo = function(call) {
-        if(navigator.webkitGetUserMedia) {
-            navigator.webkitGetUserMedia({
-                audio: true
-            }, function(mediaStream){
-                call.answer(mediaStream);
-                call.on('stream', receiveVideo);
-            }, function(){});
-        }
-        if(navigator.mozGetUserMedia) {
-            navigator.mozGetUserMedia({
-                audio: true
-            }, function(mediaStream){
-                call.answer(mediaStream);
-                call.on('stream', receiveVideo);
-            }, function(){});
-        }
-    };
-    var receiveVideo = function(mediaStream) {
-        var remoteVideo = document.getElementById('remote-video');
+        };
+        var appendMessage = function(message) {
+            var messageList = document.getElementsByClassName('message-list')[0],
+                messageElement = document.createElement('li'),
+                messageText = document.createTextNode(message);
 
-        remoteVideo.classList.add('on');
-        remoteVideo.src = URL.createObjectURL(mediaStream);
-        remoteVideo.play();
-    };
+            messageElement.appendChild(messageText);
+            messageList.appendChild(messageElement);
+        };
+        var sendVideo = function(key) {
+            if(navigator.webkitGetUserMedia) {
+                navigator.webkitGetUserMedia({
+                    audio: true
+                }, function(mediaStream){
+                    call = peer.call(key, mediaStream);
+                    call.on('stream', receiveVideo);
+                }, function(){});
+            }
+            if(navigator.mozGetUserMedia) {
+                navigator.mozGetUserMedia({
+                    audio: true
+                }, function(mediaStream){
+                    call = peer.call(key, mediaStream);
+                    call.on('stream', receiveVideo);
+                }, function(){});
+            }
+        };
+        var answerVideo = function(call) {
+            if(navigator.webkitGetUserMedia) {
+                navigator.webkitGetUserMedia({
+                    audio: true
+                }, function(mediaStream){
+                    call.answer(mediaStream);
+                    call.on('stream', receiveVideo);
+                }, function(){});
+            }
+            if(navigator.mozGetUserMedia) {
+                navigator.mozGetUserMedia({
+                    audio: true
+                }, function(mediaStream){
+                    call.answer(mediaStream);
+                    call.on('stream', receiveVideo);
+                }, function(){});
+            }
+        };
+        var receiveVideo = function(mediaStream) {
+            var remoteVideo = document.getElementById('remote-video');
 
-    var callKey;
+            remoteVideo.classList.add('on');
+            remoteVideo.src = URL.createObjectURL(mediaStream);
+            remoteVideo.play();
+        };
 
-    peer.on('open', function(id) {
-        console.log('peer open');
-        socket.on(id, function (data) {
-            console.log('socket receive');
-            conn = peer.connect(data.key);
+        var callKey;
 
-            conn.on('open', function() {
-                console.log('peer connect');
+        peer.on('open', function(id) {
+            console.log('peer open');
+            socket.on(id, function (data) {
+                console.log('socket receive');
+                conn = peer.connect(data.key);
 
-                // setInput();
+                conn.on('open', function() {
+                    console.log('peer connect');
 
-                // Receive messages
-                // conn.on('data', function(data) {
-                //     appendMessage(data.message);
-                // });
+                    // setInput();
+
+                    // Receive messages
+                    // conn.on('data', function(data) {
+                    //     appendMessage(data.message);
+                    // });
+                });
+
+                callKey = data.key;
             });
 
-            callKey = data.key;
+            socket.emit('c2s', {
+                room: analyzer.getUrlParameter('room') || 1000,
+                key: id
+            });
         });
 
-        socket.emit('c2s', {
-            room: analyzer.getUrlParameter('room') || 1000,
-            key: id
+        peer.on('connection', function(connection) {
+            console.log('peer connect');
+            conn = connection;
+
+            setInput();
+
+            // Receive messages
+            conn.on('data', function(data) {
+                appendMessage(data.message);
+            });
+
+            peer.on('call', function(call) {
+                console.log('peer call');
+                answerVideo(call);
+            });
         });
-    });
 
-    peer.on('connection', function(connection) {
-        console.log('peer connect');
-        conn = connection;
+        document.addEventListener('DOMContentLoaded', function() {
+            var callElements = Array.prototype.slice.call(document.getElementsByClassName('js-call'));
 
-        setInput();
-
-        // Receive messages
-        conn.on('data', function(data) {
-            appendMessage(data.message);
-        });
-
-        peer.on('call', function(call) {
-            console.log('peer call');
-            answerVideo(call);
-        });
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var callElements = Array.prototype.slice.call(document.getElementsByClassName('js-call'));
-
-        callElements.forEach(function(element) {
-            element.addEventListener('click', function() {
-                sendVideo(callKey);
-            })
+            callElements.forEach(function(element) {
+                element.addEventListener('click', function() {
+                    sendVideo(callKey);
+                })
+            });
         });
     });
 
