@@ -93,7 +93,7 @@
             }, function(){});
         }
         if(navigator.mozGetUserMedia) {
-            navigator.webkitGetUserMedia({
+            navigator.mozGetUserMedia({
                 audio: true
             }, function(mediaStream){
                 call.answer(mediaStream);
@@ -112,11 +112,13 @@
     var callKey;
 
     peer.on('open', function(id) {
-
+        console.log('peer open');
         socket.on(id, function (data) {
+            console.log('socket receive');
             conn = peer.connect(data.key);
 
             conn.on('open', function() {
+                console.log('peer connect');
 
                 // setInput();
 
@@ -136,6 +138,7 @@
     });
 
     peer.on('connection', function(connection) {
+        console.log('peer connect');
         conn = connection;
 
         setInput();
@@ -146,6 +149,7 @@
         });
 
         peer.on('call', function(call) {
+            console.log('peer call');
             answerVideo(call);
         });
     });
