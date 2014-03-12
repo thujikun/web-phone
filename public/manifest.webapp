@@ -1,8 +1,8 @@
 {
-    "launch_path":"/firefoxos/www/index.html",
+    "launch_path":"/",
     "installs_allowed_from":["*"],
     "version":"0.0.1",
-    "name":"StarterApp",
+    "name":"FireEagle",
     "pkgName":"com.ionicframework.starter",
     "permissions": {
         "audio-capture": {},
