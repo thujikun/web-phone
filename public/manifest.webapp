@@ -1,1 +1,11 @@
-{"launch_path":"/","installs_allowed_from":["*"],"version":"0.0.1","name":"FireEagle","pkgName":"com.ionicframework.starter"}
+{
+    "launch_path":"/firefoxos/www/index.html",
+    "installs_allowed_from":["*"],
+    "version":"0.0.1",
+    "name":"StarterApp",
+    "pkgName":"com.ionicframework.starter",
+    "permissions": {
+        "audio-capture": {},
+        "video-capture": {}
+    }
+}
