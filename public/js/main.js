@@ -42,7 +42,7 @@
         var analyzer = new UrlAnalyzer(location.href);
 
         var peer = new Peer({key: 'lwjd5qra8257b9'});
-        var socket = io.connect(location.protocol + '//' + location.hostname);
+        var socket = io.connect('http//kabocha.orz.hm:3000');
         var conn;
         var setInput = function() {
             // document.getElementById('message-send').addEventListener('click', function(e) {

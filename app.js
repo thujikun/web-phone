@@ -38,6 +38,7 @@ io.sockets.on('connection', function (socket) {
             socket.emit(data.key, {
                 key: rooms[data.room]
             });
+            rooms[data.room] = null;
         }
     });
 });
