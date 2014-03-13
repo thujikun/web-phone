@@ -42,7 +42,9 @@
         var analyzer = new UrlAnalyzer(location.href);
 
         var peer = new Peer({key: 'lwjd5qra8257b9'});
-        var socket = io.connect('http://kabocha.orz.hm/fireeagle/');
+        var socket = io.connect('http://kabocha.orz.hm/', {
+            resource: 'fireeagle'
+        });
         var conn;
         var setInput = function() {
             // document.getElementById('message-send').addEventListener('click', function(e) {
