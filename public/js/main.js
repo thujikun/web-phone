@@ -43,7 +43,7 @@
 
         var peer = new Peer({key: 'lwjd5qra8257b9'});
         var socket = io.connect('http://kabocha.orz.hm/', {
-            resource: 'fireeagle'
+            resource: 'fireeagle/socket.io'
         });
         var conn;
         var setInput = function() {
